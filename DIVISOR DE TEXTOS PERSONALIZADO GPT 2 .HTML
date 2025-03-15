@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemplo de Copiar Texto</title>
+  <style>
+    /* Estilo padrão do botão */
+    #copy-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+    /* Classe que indica que o texto foi copiado */
+    .copied {
+      background-color: #28a745; /* Verde */
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão e parágrafo de exemplo -->
+  <button id="copy-button">Copiar</button>
+  <p id="text-to-copy">Este é o texto que será copiado.</p>
+
+  <script>
+    // Seleciona o botão e o elemento com o texto a ser copiado
+    const copyButton = document.getElementById('copy-button');
+    const textToCopy = document.getElementById('text-to-copy').innerText;
+
+    // Adiciona o evento de clique ao botão
+    copyButton.addEventListener('click', function() {
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          // Se a cópia ocorrer com sucesso, adiciona a classe para mudar a cor e altera o texto do botão
+          copyButton.classList.add('copied');
+          copyButton.innerText = "Copiado!";
+        })
+        .catch(err => {
+          console.error("Erro ao copiar:", err);
+        });
+    });
+  </script>
+</body>
+</html>
